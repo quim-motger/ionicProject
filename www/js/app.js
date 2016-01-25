@@ -40,22 +40,22 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
   // Each tab has its own nav history stack:
 
-  .state('tab.dash', {
-    url: '/dash',
+  .state('tab.casas', {
+    url: '/casas',
     views: {
-      'tab-dash': {
-        templateUrl: 'templates/tab-dash.html',
-        controller: 'DashCtrl'
+      'tab-casas': {
+        templateUrl: 'templates/tab-casas.html',
+        controller: 'CasasCtrl'
       }
     }
   })
 
-  .state('tab.chats', {
-      url: '/chats',
+  .state('tab.coches', {
+      url: '/coches',
       views: {
-        'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
+        'tab-coches': {
+          templateUrl: 'templates/tab-coches.html',
+          controller: 'CochesCtrl'
         }
       }
     })
@@ -69,17 +69,27 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     })
 
-  .state('tab.account', {
-    url: '/account',
+  .state('tab.empleos', {
+    url: '/empleos',
     views: {
-      'tab-account': {
-        templateUrl: 'templates/tab-account.html',
-        controller: 'AccountCtrl'
+      'tab-empleos': {
+        templateUrl: 'templates/tab-empleos.html',
+        controller: 'EmpleosCtrl'
       }
     }
-  });
+  })
+
+  .state('tab.productos', {
+      url: '/productos',
+      views: {
+        'tab-productos': {
+          templateUrl: 'templates/tab-productos.html',
+          controller: 'ProductosCtrl'
+        }
+      }
+    });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/dash');
+  $urlRouterProvider.otherwise('/tab/casas');
 
 });
