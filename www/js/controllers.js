@@ -2,12 +2,9 @@ angular.module('starter.controllers', [])
 
 .controller('CasasCtrl', function($scope, $http, Casas) {
 
-  Casas.refresh($http);
-  $scope.casas = Casas.all();
-  $scope.remove = function(casa) {
-    Casas.remove(casa);
-  }
-
+  Casas.refresh($http, function() {
+    $scope.casas = Casas.all();
+  });
 })
 
 .controller('CochesCtrl', function($scope, Chats) {

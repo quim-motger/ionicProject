@@ -51,35 +51,11 @@ angular.module('starter.services', [])
 
 .factory('Casas', function() {
 
-  var casas = [{
-      id: 0,
-      name: 'Ben Sparrow',
-      lastText: 'You on your way?',
-      face: 'img/ben.png'
-    }, {
-      id: 1,
-      name: 'Max Lynx',
-      lastText: 'Hey, it\'s me',
-      face: 'img/max.png'
-    }, {
-      id: 2,
-      name: 'Adam Bradleyson',
-      lastText: 'I should buy a boat',
-      face: 'img/adam.jpg'
-    }, {
-      id: 3,
-      name: 'Perry Governor',
-      lastText: 'Look at my mukluks!',
-      face: 'img/perry.png'
-    }, {
-      id: 4,
-      name: 'Mike Harrington',
-      lastText: 'This is wicked good ice cream.',
-      face: 'img/mike.png'
-    }];
+  var casas = [];
 
     return {
       all: function() {
+        console.log("Data succesfully checked");
         return casas;
       },
       remove: function(casa) {
@@ -93,7 +69,7 @@ angular.module('starter.services', [])
         }
         return null;
       },
-      refresh: function($http) {
+      refresh: function($http, callback) {
         $http({
         url : "http://api.trovit.com/v2/homes/ads",
         method : 'GET',
@@ -113,10 +89,13 @@ angular.module('starter.services', [])
             var casa = {
               title: entry['title'],
               description: entry['description'],
+              img: entry['photos']['low']['url']
             }
             casas.push(casa);
             n++;
           }
+          console.log("Data succesfully stored");
+          callback();
         }, function errorCallback(response){
         });
       }
