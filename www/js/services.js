@@ -92,8 +92,34 @@ angular.module('starter.services', [])
           }
         }
         return null;
+      },
+      refresh: function($http) {
+        $http({
+        url : "http://api.trovit.com/v2/homes/ads",
+        method : 'GET',
+        headers : {
+          'X-Client-Id': 'udlud5coydqmdb7eksx97gz65gfoovsw'
+        },
+        params : {
+          'country': 'es',
+          'what': 'barcelona'
+        }
+        }).then(function successCallback(response){
+          casas = [];
+          var ads = response.data['ads'];
+          var n = 0;
+          while (n < 10) {
+            var entry = ads[n];
+            var casa = {
+              title: entry['title'],
+              description: entry['description'],
+            }
+            casas.push(casa);
+            n++;
+          }
+        }, function errorCallback(response){
+        });
       }
-      
     };
 
 })

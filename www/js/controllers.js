@@ -1,7 +1,8 @@
 angular.module('starter.controllers', [])
 
-.controller('CasasCtrl', function($scope, Casas) {
+.controller('CasasCtrl', function($scope, $http, Casas) {
 
+  Casas.refresh($http);
   $scope.casas = Casas.all();
   $scope.remove = function(casa) {
     Casas.remove(casa);
