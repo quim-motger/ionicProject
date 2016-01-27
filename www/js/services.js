@@ -84,12 +84,15 @@ angular.module('starter.services', [])
           casas = [];
           var ads = response.data['ads'];
           var n = 0;
-          while (n < 10) {
+          var max = console.log(response.data['total_ads']);
+          while (n < 10){
             var entry = ads[n];
             var casa = {
+              id: n,
               title: entry['title'],
               description: entry['description'],
-              img: entry['photos']['low']['url']
+              img: entry['photos']['low']['url'],
+              img_high: entry['photos']['xhigh']['url']
             }
             casas.push(casa);
             n++;

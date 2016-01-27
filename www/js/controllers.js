@@ -22,8 +22,8 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
+.controller('CasaDetailCtrl', function($scope, $stateParams, Casas) {
+  $scope.casa = Casas.get($stateParams.casaId);
 })
 
 .controller('EmpleosCtrl', function($scope) {
