@@ -92,7 +92,9 @@ angular.module('starter.services', [])
               title: entry['title'],
               description: entry['description'],
               img: entry['photos']['low']['url'],
-              img_high: entry['photos']['xhigh']['url']
+              img_high: entry['photos']['xhigh']['url'],
+              n_hab: entry['rooms'],
+              precio: entry['price']
             }
             casas.push(casa);
             n++;
