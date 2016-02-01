@@ -69,7 +69,7 @@ angular.module('starter.services', [])
         }
         return null;
       },
-      refresh: function($http, callback) {
+      refresh: function($http, search, callback) {
         $http({
         url : "http://api.trovit.com/v2/homes/ads",
         method : 'GET',
@@ -78,21 +78,34 @@ angular.module('starter.services', [])
         },
         params : {
           'country': 'es',
-          'what': 'barcelona'
+          'what': search,
+          'per_page': '50'
         }
         }).then(function successCallback(response){
           casas = [];
           var ads = response.data['ads'];
           var n = 0;
-          var max = console.log(response.data['total_ads']);
-          while (n < 10){
+          var max = response.data['total_ads'];
+          if (max > 50) max = 50;
+          while (n < max) {
+            console.log(n);
             var entry = ads[n];
+            var low;
+            var high;
+            if (entry['photos'] != undefined) {
+              low = entry['photos']['low']['url'];
+              high = entry['photos']['high']['url'];
+            } else {
+              low = 'http://www.tresequipos.es/img/p/img/img_not_found.gif';
+              high = 'http://www.tresequipos.es/img/p/img/img_not_found.gif';
+            }
+
             var casa = {
               id: n,
               title: entry['title'],
               description: entry['description'],
-              img: entry['photos']['low']['url'],
-              img_high: entry['photos']['xhigh']['url'],
+              img: low,
+              img_high: high,
               n_hab: entry['rooms'],
               precio: entry['price']
             }

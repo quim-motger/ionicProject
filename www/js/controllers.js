@@ -2,9 +2,24 @@ angular.module('starter.controllers', [])
 
 .controller('CasasCtrl', function($scope, $http, Casas) {
 
-  Casas.refresh($http, function() {
-    $scope.casas = Casas.all();
-  });
+  $scope.data = {
+    search: '',
+  }
+
+  $scope.$watch('data.search',function (newValue, oldValue) {
+       console.log("Searching");
+       if (newValue == '') {}
+       else if (newValue != undefined) {
+         Casas.refresh($http, newValue, function() {
+             $scope.casas = Casas.all();
+           });
+       }
+    });
+
+  $scope.setSearch = function(search) {
+      $scope.data.search = search;
+    }
+
 })
 
 .controller('CochesCtrl', function($scope, Chats) {
