@@ -88,29 +88,30 @@ angular.module('starter.services', [])
           var max = response.data['total_ads'];
           if (max > 50) max = 50;
           while (n < max) {
-            console.log(n);
             var entry = ads[n];
             var low;
             var high;
-            if (entry['photos'] != undefined) {
-              low = entry['photos']['low']['url'];
-              high = entry['photos']['high']['url'];
-            } else {
-              low = 'http://www.tresequipos.es/img/p/img/img_not_found.gif';
-              high = 'http://www.tresequipos.es/img/p/img/img_not_found.gif';
-            }
+            if (entry != undefined) {
+              if (entry['photos'] != undefined) {
+                low = entry['photos']['low']['url'];
+                high = entry['photos']['high']['url'];
+              } else {
+                low = 'http://www.tresequipos.es/img/p/img/img_not_found.gif';
+                high = 'http://www.tresequipos.es/img/p/img/img_not_found.gif';
+              }
 
-            var casa = {
-              id: n,
-              title: entry['title'],
-              description: entry['description'],
-              img: low,
-              img_high: high,
-              n_hab: entry['rooms'],
-              precio: entry['price']
+              var casa = {
+                id: n,
+                title: entry['title'],
+                description: entry['description'],
+                img: low,
+                img_high: high,
+                n_hab: entry['rooms'],
+                precio: entry['price']
+              }
+              casas.push(casa);
+              n++;
             }
-            casas.push(casa);
-            n++;
           }
           console.log("Data succesfully stored");
           callback();
